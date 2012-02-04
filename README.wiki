@@ -1,0 +1,6 @@
+=Stuff2Get=
+A shared shopping list mobile HTML5 app. 
+
+===log===
+*workin on webeshppin.js#joinexist line 91? what to do based on exists.
+*var cookieList = function(cookieName) {} has been changed only in lists.js

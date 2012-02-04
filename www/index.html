@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>shopping list</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.css" />
+		<link rel="apple-touch-icon" sizes="114x114" href="food2buy3.jpg"/>
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.mobile.js"></script>	
+		<script src="js/jquery.cookies.js"></script>
+		<script src="js/foodlist.js"></script>		
+		
+	</head> 
+<body> 
+
+<div id="yourlists" data-role="page">
+
+	<div data-role="header" data-position="inline">
+		<a href="#deletestuff" data-icon="delete" data-role="button" id="ylb1">remove</a>
+		<h1>Your Lists</h1>
+		<a href="#addstuff" data-icon="plus" data-role="button">add</a>
+	</div>
+	<div data-role="content">	
+       <h4>Your Lists</h4>    
+       <p id="aboutyl"></p>
+       <ul id="allyourlists" class="current" data-role="listview" data-filter="false"></ul>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div id="dontknowyou" data-role="page">
+
+	<div data-role="header" data-position="inline">
+		<a href="#deletestuff" data-icon="delete" data-role="button" id="dkyb1">remove</a>
+		<h1>Hello Stranger</h1>
+		<a href="#addstuff" data-icon="plus" data-role="button">add</a>
+	</div>
+	<div data-role="content">	
+		<h4>This is an application of shared lists</h4>
+ 		<p>Not sure I have seen you before. Maybe I forgot or you want to join somebody else's lists. Either way, to go on I'll need some info.</p>
+ 		<form>
+	    	<div data-role="fieldcontain">
+	         <label for="name">Repo:</label>
+	         <input type="text" name="repo" id="repo" value=""  />
+	         <label for="name">List:</label>
+	         <input type="text" name="list" id="list" value="groceries" />
+	         <label for="email">Email:</label>
+	         <input type="email" name="email" id="email" value="" />
+			</div>			
+		<div data-role="controlgroup" data-type="horizontal" class="stangersubmit">
+				<input type="submit" data-theme="c" id="newsetup" value="New Setup"/>
+				<input type="submit" data-theme="b" id="joinexist" value="Join Existing" />
+		</div>
+ 		</form>
+ 		<p><b>If this is  a new setup</b> - Accept the repo name and list name or make up a new ones. </p>
+ 		<p><b>If you are joining an existing list</b> - Enter the repo name and the list name you are joining.  </p>
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+<script src="js/whobeshoppin.js"></script>	
+
+
+</body>
+</html>
