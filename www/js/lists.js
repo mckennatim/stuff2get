@@ -1,4 +1,4 @@
-var serviceURL = "http://" + location.host + "/webeshoppin/stuff2get/services/";
+var serviceURL = "http://" + location.host + "/stuff2get/services/";
 var thelists;//the lists array
 var clists;//the cookie list object
 var repo;
@@ -22,7 +22,7 @@ $('#yourlists').live('pageinit', function(event) {
 			alistsp = alist.split(".");
 			rep = alistsp[0];
 			lis = alistsp[1];
-			$('#allyourlists').append('<li><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" >Repo: ' + rep + '& List: ' + lis + '</a></li>');
+			$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" >Repo: ' + rep + '& List: ' + lis + '</a></li>');
 		});
 		//rep;
 		$("#repo").val(rep);

@@ -1,7 +1,7 @@
 <?php
 // http://10.0.1.18/webeshoppin/stuff2get/services/addlist.php?email=mck&repo=derdt&list=groceries
 include_once('tm/dbinfo.php');
-include('/tm/ChromePhp.php');
+include('tm/ChromePhp.php');
 
 $repo = $_GET['repo'];
 $list= $_GET['list'];

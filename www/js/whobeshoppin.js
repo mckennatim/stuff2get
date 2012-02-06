@@ -1,4 +1,4 @@
-var serviceURL = "http://" + location.host + "/webeshoppin/stuff2get/services/";
+var serviceURL = "http://" + location.host + "/stuff2get/services/";
 
 $('#yourlists').bind('pageinit', function(event) {
 	console.log('in bind pageinit for yourlists');

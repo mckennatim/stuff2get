@@ -1,9 +1,11 @@
 <?php
 include_once('tm/dbinfo.php');
-include('/tm/ChromePhp.php');
+include('tm/ChromePhp.php');
 $repo = $_GET['repo'];
 $list = $_GET['list'];
 $need = $_GET['need'];
+
+ChromePhp::log("stuff=");
 
 $sql = "SELECT stuff, id FROM `lists` WHERE repo=? AND list=? AND need=? ORDER BY stuff";
 

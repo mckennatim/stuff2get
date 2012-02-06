@@ -1,6 +1,6 @@
 <?php
 include_once('tm/dbinfo.php');
-include('/tm/ChromePhp.php');
+include('tm/ChromePhp.php');
 $fid=$_GET['fid'];
 
 $sql = "DELETE FROM `lists` WHERE id=?";

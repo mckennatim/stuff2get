@@ -1,12 +1,12 @@
 <?php
 // http://10.0.1.18/webeshoppin/stuff2get/services/joinexist.php?email=mck&repo=derdt&list=groceries
 include_once('tm/dbinfo.php');
-include('/tm/ChromePhp.php');
+include('tm/ChromePhp.php');
 
 $repo = $_GET['repo'];
 $list= $_GET['list'];
 $email = $_GET['email'];
-
+//echo($repo . $list . $email);
 ChromePhp::log($repo . $list . $email);
 
 $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);  
@@ -35,4 +35,5 @@ if ($res = $q->execute(array($repo, $list))) {
 		echo '{"items":[{"exists":"1"}]}'; 
 	}
 }
+
 ?>
