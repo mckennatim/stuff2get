@@ -22,7 +22,7 @@ $('#yourlists').bind('pageinit', function(event) {
 		location.href= 'food2buy.html?repo=' + rep + '&list=' + lis;
 	*/	
 	}else {
-	location.href='lists.html';	
+	location.href='index.html';	
 	/*
 		$.each(thelists, function(index, alist) {
 			alistsp = alist.split(".");

@@ -20,7 +20,7 @@ $('#yourlists').live('pageinit', function(event) {
 	llen=thelists.length;
 	//alert(llen);
 	if (llen==0){
-		location.href='index.html';		
+		location.href='nolists.html';		
 	}else {
 		$.each(thelists, function(index, alist) {
 			alistsp = alist.split(".");

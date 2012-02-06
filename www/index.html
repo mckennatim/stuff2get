@@ -7,61 +7,74 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="food2buy3.jpg"/>
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery.mobile.js"></script>	
-		<script src="js/jquery.cookies.js"></script>
+		<script src="js/jquery.cookies.js"></script>	
 		<script src="js/tmutil.js"></script>
-		<script src="js/foodlist.js"></script>		
-		
+		<script src="js/foodlist.js"></script>				
 	</head> 
 <body> 
-
+<!-- /page -->
 <div id="yourlists" data-role="page">
-
+	<!-- header -->
 	<div data-role="header" data-position="inline">
-		<a href="#deletestuff" data-icon="delete" data-role="button" id="ylb1">remove</a>
+		<a href="#deletestuff" data-icon="delete" data-role="button" id="delst">delete</a>
 		<h1>Your Lists</h1>
-		<a href="#addstuff" data-icon="plus" data-role="button">add</a>
+		<a href="#share" data-icon="arrow-u" data-role="button">share</a>
 	</div>
-	<div data-role="content">	
-       <h4>Your Lists</h4>    
-       <p id="aboutyl"></p>
-       <ul id="allyourlists" class="current" data-role="listview" data-filter="false"></ul>
-	</div><!-- /content -->
-
-</div><!-- /page -->
-
-<div id="dontknowyou" data-role="page">
-
-	<div data-role="header" data-position="inline">
-		<a href="#deletestuff" data-icon="delete" data-role="button" id="dkyb1">remove</a>
-		<h1>Hello Stranger</h1>
-		<a href="#addstuff" data-icon="plus" data-role="button">add</a>
-	</div>
-	<div data-role="content">	
-		<h4>This is an application of shared lists</h4>
- 		<p>Not sure I have seen you before. Maybe I forgot or you want to join somebody else's lists. Either way, to go on I'll need some info.</p>
- 		<form>
+	<!-- content -->
+	<div data-role="content">
+		<div >	
+	       <h3>Your Lists</h3>    
+	       <ul id="allyourlists" class="current" data-role="listview" data-filter="false"></ul>
+       </div>
+		<div>
+			<br/>
+			<h3>Markets and Specials</h3>
+			<ul id="sales" class="current" data-role="listview" data-filter="false">
+				<li><a href="http://www.massfarmersmarkets.org/">MA Farmers Markets</a></li>
+				<li><a href="http://www.capeannfreshcatch.org/">CapeAnnFreshCatch CSF</a></li>				
+				<li><a href="http://wholefoodsmarket.com/storespecials/JMP_specials.pdf">Whole Foods</a></li>
+				<li><a href="http://www.traderjoes.com/products.asp">Trader Joes</a></li>
+				<li><a href="http://stopandshop.shoplocal.com/stopandshop/default.aspx?action=entry&pretailerid=-99254&siteid=673&storeID=2598877">Stop and Shop</a></li>
+			</ul>
+		</div>
+		<br/>
+       	<h3>Add a List</h3> 
+		<form>
 	    	<div data-role="fieldcontain">
 	         <label for="name">Repo:</label>
 	         <input type="text" name="repo" id="repo" value=""  />
 	         <label for="name">List:</label>
-	         <input type="text" name="list" id="list" value="groceries" />
-	         <label for="email">Email:</label>
-	         <input type="email" name="email" id="email" value="" />
+	         <input type="text" name="list" id="list" value="" />
 			</div>			
 		<div data-role="controlgroup" data-type="horizontal" class="stangersubmit">
-				<input type="submit" data-theme="c" id="newsetup" value="New Setup"/>
+				<input type="submit" data-theme="c" id="newlist" value="New List"/>
 				<input type="submit" data-theme="b" id="joinexist" value="Join Existing" />
 		</div>
  		</form>
- 		<p><b>If this is  a new setup</b> - Accept the repo name and list name or make up a new ones. </p>
+ 		<p><b>To create a new list</b> - Accept/change the repo name and make up a list name. </p>
  		<p><b>If you are joining an existing list</b> - Enter the repo name and the list name you are joining.  </p>
+ 		<!-- footer -->
 	</div><!-- /content -->
+</div><!-- /page -->
+
+<div id="share" data-role="page">
+    <div data-role="header">
+    	<a href="#yourlists" data-icon="back" data-role="button">back</a>
+        <h2>Share Your List</h2>
+    </div><!-- /header -->
+	<h1>Lists Available to Share</h1>
+    <div data-role="content">	
+        
+        <ul id="list2share" class="current" data-role="listview" data-filter="false"></ul>	
+        <p>Enter the email of someone with whom you would like to share and then click on the up arrow of the list you'd like to share.</p>
+		<form>
+	         <label for="name">Email:</label>
+	         <input type="email" name="shemail" id="shemail"  />
+	    </form>     
+    </div><!-- /content -->
 
 </div><!-- /page -->
 
-
-<script src="js/whobeshoppin.js"></script>	
-
-
+<script src="js/lists.js"></script>	
 </body>
 </html>
