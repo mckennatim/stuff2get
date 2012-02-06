@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>shopping list</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.css" />
+		<link rel="apple-touch-icon" sizes="114x114" href="food2buy3.jpg"/>
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.mobile.js"></script>	
+		<script src="js/jquery.cookies.js"></script>
+		<script src="js/tmutil.js"></script>	
+	</head> 
+<body> 
+	
+	<div id="yourlists" data-role="page">
+	
+		<div data-role="header" data-position="inline">
+			<a href="#deletestuff" data-icon="delete" data-role="button" id="ylb1">remove</a>
+			<h1>Your Lists</h1>
+			<a href="#addstuff" data-icon="plus" data-role="button">add</a>
+		</div>
+		<div data-role="content">	
+	       <h4>Your Lists</h4>    
+
+		</div><!-- /content -->
+			         	<div data-role="controlgroup" data-type="horizontal" class="aisubmit">
+							<input type="submit" data-theme="b" id="addinput" value="Add Input"/>
+						</div>	
+	</div><!-- /page -->
+        <script>
+        $('body').on('click', "#addinput", function (e) { 
+            e.stopImmediatePropagation();
+            e.preventDefault();
+        });              
+        </script>    
+</body>
+</html>

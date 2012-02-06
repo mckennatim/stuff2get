@@ -1,4 +1,3 @@
-var serviceURL = "http://" + location.host + "/stuff2get/services/";
 var thelists;//the lists array
 var clists;//the cookie list object
 var repo;
@@ -10,19 +9,24 @@ var isnew;
 
 $('#yourlists').live('pageinit', function(event) {
 	console.log('in bind pageinit for yourlists');
+        if (cookiesEnabled()==false){
+	    	alert("Cookies need to be enabled in order for this app to work.");
+	    	console.log("cookies are not enabled");
+	    	exit();
+        }	
 	clists = new cookieList("lists");
 	thelists = clists.items();
 	console.log(thelists);
 	llen=thelists.length;
 	//alert(llen);
 	if (llen==0){
-		$.mobile.changePage( $('#dontknowyou') );	
+		location.href='index.html';		
 	}else {
 		$.each(thelists, function(index, alist) {
 			alistsp = alist.split(".");
 			rep = alistsp[0];
 			lis = alistsp[1];
-			$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" >Repo: ' + rep + '& List: ' + lis + '</a></li>');
+			$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  lis + '</span><br/>repository: ' + rep + '</p></a></li>');
 		});
 		//rep;
 		$("#repo").val(rep);
@@ -40,7 +44,7 @@ $('#share').live('pageinit', function(event) {
 		alistsp = alist.split(".");
 		rep = alistsp[0];
 		lis = alistsp[1];
-		$('#list2share').append('<li><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" >Repo: ' + rep + '& List: ' + lis + '</a><a href="#" data-icon="arrow-u" class="ashare" id=' + rep + '.' + lis + '>remove</a></li>');
+		$('#list2share').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  lis + '</span><br/>repository: ' + rep + '</p></a><a href="#" data-icon="arrow-u" class="ashare" id=' + rep + '.' + lis + '>remove</a></li>');
 	});
 	$('#list2share').listview('refresh');	
 });
@@ -68,7 +72,7 @@ $("#newlist").click(function (e) {
 			lists.add(repo + "." + list);							
      	}
     });
-	$('#allyourlists').append('<li><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false" >Repo: ' + repo + '& List: ' + list + '</a></li>');
+	$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  list + '</span><br/>repository: ' + repo + '</p></a></li>');
 	$('#allyourlists').listview('refresh');
 });
 
@@ -93,7 +97,7 @@ $("#joinexist").click(function (e) {
 				//alert('about to set a cookie');
 				var lists = new cookieList("lists");
 				lists.add(repo + "." + list);		
-				$('#allyourlists').append('<li><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false" >Repo: ' + repo + '& List: ' + list + '</a></li>');
+				$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  list + '</span><br/>repository: ' + repo + '</p></a></li>');
 				$('#allyourlists').listview('refresh');						
 			}else {
 				alert("That list doesn't exist. Want to create a new (setup) list?");
@@ -111,7 +115,7 @@ $('#delst').click(function() {
 		alistsp = alist.split(".");
 		rep = alistsp[0];
 		lis = alistsp[1];
-		$('#allyourlists').append('<li><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" >Repo: ' + rep + ' & List: ' + lis + '</a><a href="#deletestuff" data-icon="delete" class="delalist" id=' + rep + '.' + lis + '>remove</a></li>');	
+		$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  lis + '</span><br/>repository: ' + rep + '</p></a><a href="#deletestuff" data-icon="delete" class="delalist" id=' + rep + '.' + lis + '>remove</a></li>');	
 	});		
 	$('#allyourlists').listview('refresh');
 	//empty ul list and rewrite
@@ -165,40 +169,5 @@ $('body').on('click', ".ashare", function (e) {
 
 	
 });
-var cookieList = function(cookieName) {
-	var cookie = $.cookie(cookieName);
-	//Load the items or a new array if null.
-	var items = cookie ? cookie.split(/,/) : new Array();
-	//Return a object that we can use to access the array.
-	//while hiding direct access to the declared items array
-	//this is called closures see http://www.jibbering.com/faq/faq_notes/closures.html
-	return {
-	    "add": function(val) {
-	        //Add to the items.
-	        items.push(val);
-	        //      http://stackoverflow.com/questions/3387251/how-to-store-array-in-jquery-cookie
-	        $.cookie(cookieName, items.join(','), { expires: 700 });
-	    },
-	    "remove": function (val) { 
-	        sidx = $.inArray(val, items);//find index of location
-	        if (sidx>=-1) {
-	        	items.splice(sidx,1);
-	        }	        
-	        $.cookie(cookieName, items, { expires: 700 }); 
-	    },
-	    "clear": function() {
-	        items = null;
-	        //clear the cookie.
-	        $.cookie(cookieName, null);
-	    },
-	    "items": function() {
-	        //Get all the items.
-	        return items;
-	    }
-	  };
-};
 
-function IsEmail(email) {
-  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  return regex.test(email);
-}
+

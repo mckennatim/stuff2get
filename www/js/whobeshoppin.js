@@ -1,13 +1,18 @@
-var serviceURL = "http://" + location.host + "/stuff2get/services/";
 
 $('#yourlists').bind('pageinit', function(event) {
 	console.log('in bind pageinit for yourlists');
+        if (cookiesEnabled()==false){
+	    	alert("Cookies need to be enabled in order for this app to work.");
+	    	console.log("cookies are not enabled");
+	    	exit();
+        }
 	var lists = new cookieList("lists");
 	thelists = lists.items();
 	llen=thelists.length;
 	//alert(llen);
 	if (llen==0){
 		$.mobile.changePage( $('#dontknowyou') );
+	/*	
 	}else if (llen==1){
 		onelist = thelists[0];
 		onearr = onelist.split(".");
@@ -15,7 +20,10 @@ $('#yourlists').bind('pageinit', function(event) {
 		var lis = onearr[1];
 		console.log('about to try to load food2buy.html');
 		location.href= 'food2buy.html?repo=' + rep + '&list=' + lis;
+	*/	
 	}else {
+	location.href='lists.html';	
+	/*
 		$.each(thelists, function(index, alist) {
 			alistsp = alist.split(".");
 			rep = alistsp[0];
@@ -25,6 +33,7 @@ $('#yourlists').bind('pageinit', function(event) {
 		console.log(thelists.length);
 		$('#aboutyl').append('ducks are people too ');
 		$('#allyourlists').listview('refresh');
+	*/	
 	}
 });
 
@@ -48,28 +57,34 @@ $("#newsetup").click(function (e) {
     repo = $("#repo").val();
     list = $("#list").val();
     email = $("#email").val();
-    $.ajax({
-	     type: "GET",
-	     url: serviceURL + "newsetup.php",
-	     data: "repo=" + repo + "&list=" + list + "&email=" +email,
-	     dataType: "json",
-	     success: function(da){
-	      	//alert(da.items);
-			userd = da.items;
-			console.log(userd);
-			$.each(userd, function(index, userinfo) {
-	      	  	uid = userinfo.uid;
-	      	  	isnew = userinfo.isnew;
-			});
-			//alert('about to set a cookie');
-			var lists = new cookieList("lists");
-			lists.add(repo + "." + list);
-			$.cookie("repo", "repo", { expires: 700 });
-			//alert('set a cookie for repo ');
-			$.cookie("list", list, { expires: 700 });
-			$.cookie("email", email, { expires: 700 });								
-     	}
-     });
+    if (IsEmail(email)==true) {
+	    $.ajax({
+		     type: "GET",
+		     url: serviceURL + "newsetup.php",
+		     data: "repo=" + repo + "&list=" + list + "&email=" +email,
+		     dataType: "json",
+		     success: function(da){
+		      	//alert(da.items);
+				userd = da.items;
+				console.log(userd);
+				$.each(userd, function(index, userinfo) {
+		      	  	uid = userinfo.uid;
+		      	  	isnew = userinfo.isnew;
+				});
+				//alert('about to set a cookie');
+				var lists = new cookieList("lists");
+				lists.add(repo + "." + list);
+				$.cookie("repo", "repo", { expires: 700 });
+				//alert('set a cookie for repo ');
+				$.cookie("list", list, { expires: 700 });
+				$.cookie("email", email, { expires: 700 });	
+				//alert('made it to after newsetup, ready tos witch');
+				location.href= 'lists.html';							
+	     	}
+	     });
+    } else {
+    	alert('That does not seem to be a valid email');  
+    }
 	//alert("clicked newsetup " + repo + list + email);
     //Do important stuff....
 });
@@ -128,41 +143,3 @@ function createRandomWord(length) {
     return word;
 }
  
-//This is not production quality, its just demo code.
-var cookieList = function(cookieName) {
-	//When the cookie is saved the items will be a comma seperated string
-	//So we will split the cookie by comma to get the original array
-	var cookie = $.cookie(cookieName);
-	//Load the items or a new array if null.
-	var items = cookie ? cookie.split(/,/) : new Array();
-	
-	//Return a object that we can use to access the array.
-	//while hiding direct access to the declared items array
-	//this is called closures see http://www.jibbering.com/faq/faq_notes/closures.html
-	return {
-	    "add": function(val) {
-	        //Add to the items.
-	        items.push(val);
-	        //Save the items to a cookie.
-	        //EDIT: Modified from linked answer by Nick see 
-	        //      http://stackoverflow.com/questions/3387251/how-to-store-array-in-jquery-cookie
-	        $.cookie(cookieName, items.join(','), { expires: 700 });
-	    },
-	    "remove": function (val) { 
-	        sidx = $.inArray(val, items);//find index of location
-	        if (sidx>=-1) {
-	        	items.splice(sidx,1);
-	        }	        
-	        $.cookie(cookieName, items, { expires: 700 }); 
-	    },
-	    "clear": function() {
-	        items = null;
-	        //clear the cookie.
-	        $.cookie(cookieName, null);
-	    },
-	    "items": function() {
-	        //Get all the items.
-	        return items;
-	    }
-	  }
-}  
