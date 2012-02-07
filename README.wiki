@@ -1,6 +1,8 @@
 =Stuff2Get=
 A shared shopping list jquery-mobile HTML5 app. 
 
+[http://webeshoppin.info/stuff2get/www/index.html?repo=Gittest&list=groceries&email=tim@pathboston.com demo site]
+
 ===log===
 *change static shopping links to user control, try keeping them in localStorage
 *make a url that can be used to create new lists
