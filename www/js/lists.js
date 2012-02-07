@@ -9,30 +9,43 @@ var isnew;
 
 $('#yourlists').live('pageinit', function(event) {
 	console.log('in bind pageinit for yourlists');
-        if (cookiesEnabled()==false){
-	    	alert("Cookies need to be enabled in order for this app to work.");
-	    	console.log("cookies are not enabled");
-	    	exit();
-        }	
-	clists = new cookieList("lists");
-	thelists = clists.items();
-	console.log(thelists);
-	llen=thelists.length;
-	//alert(llen);
-	if (llen==0){
-		location.href='nolists.html';		
-	}else {
-		$.each(thelists, function(index, alist) {
-			alistsp = alist.split(".");
-			rep = alistsp[0];
-			lis = alistsp[1];
-			$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  lis + '</span><br/>repository: ' + rep + '</p></a></li>');
-		});
-		//rep;
-		$("#repo").val(rep);
-		console.log(thelists.length);
-		$('#aboutyl').append('ducks are people too ');
-		$('#allyourlists').listview('refresh');
+    if (cookiesEnabled()==false){
+    	alert("Cookies need to be enabled in order for this app to work.");
+    	console.log("cookies are not enabled");
+    	exit();
+    }	
+    //see if there is a list in the query string URL vars
+    //like http://10.0.1.18/stuff2get/www/index.html?repo=Mytest&list=Frogs&email=tim@pathboston.com
+    urlps = getUrlVars();
+	console.log(window.location.href);
+	repo = urlps['repo'];
+	list= urlps['list'];
+	email= urlps['email'];
+	console.log(repo != undefined);
+	if (repo != undefined  && list !=undefined){
+		theurl =  serviceURL + "newsetup.php";
+		newList();
+	} else {
+		clists = new cookieList("lists");
+		thelists = clists.items();
+		console.log(thelists);
+		llen=thelists.length;
+		//alert(llen);
+		if (llen==0){
+			location.href='nolists.html';		
+		}else {
+			$.each(thelists, function(index, alist) {
+				alistsp = alist.split(".");
+				rep = alistsp[0];
+				lis = alistsp[1];
+				$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + rep + '&list=' + lis + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  lis + '</span><br/>repository: ' + rep + '</p></a></li>');
+			});
+			//rep;
+			$("#repo").val(rep);
+			console.log(thelists.length);
+			$('#aboutyl').append('ducks are people too ');
+			$('#allyourlists').listview('refresh');
+		}		
 	}
 });
 
@@ -54,27 +67,33 @@ $("#newlist").click(function (e) {
     e.preventDefault();
     repo = $("#repo").val();
     list = $("#list").val();
+    theurl =  serviceURL + "addlist.php";
+	newList();
+});
+
+function newList(){
     $.ajax({
 	     type: "GET",
-	     url: serviceURL + "addlist.php",
+	     url: theurl,
 	     data: "repo=" + repo + "&list=" + list + "&email=" +email,
 	     dataType: "json",
 	     success: function(da){
-	      	//alert(da.items);
+	      	//returns an object with exists=1 or 0
 			userd = da.items;
 			console.log(userd);
 			$.each(userd, function(index, userinfo) {
-	      	  	uid = userinfo.uid;
-	      	  	isnew = userinfo.isnew;
+	      	  	exi = userinfo.exists;
+	      	  	console.log(exi);
 			});
 			//alert('about to set a cookie');
 			var lists = new cookieList("lists");
-			lists.add(repo + "." + list);							
+			lists.add(repo + "." + list);	
+			$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false"><p><span style="font-size: 2.25em;">'  +  list + '</span><br/>repository: ' + repo + '</p></a></li>');
+			$('#allyourlists').listview('refresh');	
+			location.href= 'index.html';									
      	}
     });
-	$('#allyourlists').append('<li data-theme="b"><a href="food2buy.html?repo=' + repo + '&list=' + list + '" data-ajax="false" ><p><span style="font-size: 2.25em;">'  +  list + '</span><br/>repository: ' + repo + '</p></a></li>');
-	$('#allyourlists').listview('refresh');
-});
+}
 
 $("#joinexist").click(function (e) {
 	e.stopImmediatePropagation();
@@ -160,14 +179,14 @@ $('body').on('click', ".ashare", function (e) {
     list = lp[1];
     semail = $("#shemail").val();
     if (IsEmail(semail)==true) {
-     	urri ='mailto:'+ semail  + '?subject=share this list with me' + '&cc=' + email + '&body=Hi, I think it would be cool if we shared this ' + list +' list on our phones. That way when either of us modified it we would see the update. http://10.0.1.18/webeshoppin/stuff2get/www/food2buy.html%3Frepo=' + repo + '%26list=' + list + '%26email=' + semail  + '%26shared=1';
+     	urri ='mailto:'+ semail  + '?subject=share this list with me' + '&cc=' + email + '&body=Hi, I think it would be cool if we shared this ' + list +' list on our phones. That way when either of us modified it we would see the update. http://' + location.host + '/stuff2get/www/index.html%3Frepo=' + repo + '%26list=' + list + '%26email=' + semail  + '%26shared=1';
     	window.location = urri;
 		alert('clicked ashare ' + semail + repo + list + urri);   	
     } else {
     	alert('That does not seem to be avalid email');  
-    }
-
-	
+    }	
 });
+
+
 
 

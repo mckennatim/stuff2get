@@ -79,7 +79,7 @@ $("#newsetup").click(function (e) {
 				$.cookie("list", list, { expires: 700 });
 				$.cookie("email", email, { expires: 700 });	
 				//alert('made it to after newsetup, ready tos witch');
-				location.href= 'lists.html';							
+				location.href= 'index.html';							
 	     	}
 	     });
     } else {

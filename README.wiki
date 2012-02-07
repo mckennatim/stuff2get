@@ -1,6 +1,8 @@
 =Stuff2Get=
-A shared shopping list mobile HTML5 app. 
+A shared shopping list jquery-mobile HTML5 app. 
 
 ===log===
+*change static shopping links to user control, try keeping them in localStorage
+*make a url that can be used to create new lists
 *workin on webeshppin.js#joinexist line 91? what to do based on exists.
-*var cookieList = function(cookieName) {} has been changed only in lists.js
+*var cookieList = function(cookieName) {} has been changed only in lists.js move utility functions to one place
