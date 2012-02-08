@@ -19,6 +19,7 @@ $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 			$q->execute(array($repo, $list, $email));  
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			ChromePhp::log('{"error":{"text":'. $e->getMessage() .'}}');
 		} 
 $dbh=null;		
 

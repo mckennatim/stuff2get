@@ -28,6 +28,7 @@ if ($res = $q->execute(array($repo, $list, $email))) {
 			$q->execute(array($repo, $list, $email));  
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			ChromePhp::log('{"error":{"text":'. $e->getMessage() .'}}');
 		} 
 		mysql_connect ($dbhost, $dbuser, $dbpass) or die("can't connect");
 		mysql_select_db ($dbname) or die("db unavailable");

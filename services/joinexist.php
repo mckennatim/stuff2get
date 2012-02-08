@@ -7,7 +7,8 @@ $repo = $_GET['repo'];
 $list= $_GET['list'];
 $email = $_GET['email'];
 //echo($repo . $list . $email);
-ChromePhp::log($repo . $list . $email);
+ChromePhp::log('in joinexist ' . $repo . $list . $email);
+ChromePhp::log('in joinexist ');
 
 $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);  
 $sql = "SELECT COUNT(*) FROM users WHERE repo=? AND list=?";
@@ -18,10 +19,10 @@ if ($res = $q->execute(array($repo, $list))) {
     //Check the number of rows that match the SELECT statement 
     ChromePhp::log($q);
   	if ($q->fetchColumn() == 0) {
-    	//LIST DOESN'T EXIST $exists = "0";
+    	ChromePhp::log('LIST DOESNT EXIST $exists = "0"');
     	echo '{"items":[{"exists":"0"}]}'; 
 	} else {
-		//LIST EXISTS
+		ChromePhp::log('LIST EXISTS');
 		//add user
 		$sql = "INSERT INTO `users`( `repo`, `list`, `email`) VALUES (?,?,?)";
 		try {
@@ -30,6 +31,7 @@ if ($res = $q->execute(array($repo, $list))) {
 			$q->execute(array($repo, $list, $email));  
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+			ChromePhp::log('{"error":{"text":'. $e->getMessage() .'}}');
 		} 
 		$dbh = null;
 		echo '{"items":[{"exists":"1"}]}'; 
