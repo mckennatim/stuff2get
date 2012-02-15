@@ -1,11 +1,46 @@
 =Stuff2Get=
-A shared shopping list jquery-mobile HTML5 app. 
+You can have shared shopping lists on any mobile device. Update list on one device and the updates show up on another.
+
+http://webeshoppin.info is a jquery-mobile HTML5 app. Server is php/mysql.
 
 [http://webeshoppin.info/stuff2get/www/index.html?repo=Gittest&list=groceries&email=tim@pathboston.com&shared=0 demo site]
+===future status===
+Use localStorage for current and completed items on each list. Push server changes to shared lists. 
 
+Implement maps and directions. 
+
+Scrape sales flyers from links to find matches for list items. Add sale price info to list items.
+
+===current status===
+LocalStorage is implemented for markets and shopping links. All updates to server are asynch so the app keeps running. List names are loaded from cookies.
+
+Google Places is used to find stores in area. a mapPage is being created though it has not been integrated. 
+
+===tickets===
+To delete items in food2buy you go to another page. Unnecessary. Might as well do it main page by adding delete icons. Deleting from combined list is confusing.
+
+When you add new items the search box gets cleared. It doesn't get cleared when you uncheck completed items afte locating them with search. Not cool.  
 ===log===
 *change static shopping links to user control, try keeping them in localStorage
 *create options page to delete, create join or share lists
 *make a url that can be used to create new lists
 *workin on webeshppin.js#joinexist line 91? what to do based on exists.
 *var cookieList = function(cookieName) {} has been changed only in lists.js move utility functions to one place
+
+===help file===
+
+<h3>Basics of shared lists</h3>
+    		
+<p>Check off items as you aquire them. To add items to the list type into the search box. The list below the search box will be filtered. Once it comes up un-check it to put it on your list. If it never shows up just hit go (enter) to add the item.</p>
+
+<h3>Allists and Options</h3>
+
+<p>You won't spend much time here but will need to deal with it a little to set it up.</p>
+
+<h4>List Options</h4>
+
+<p>Manage your lists here by adding new lists, joining someone else's list, sharing your list(s) or deleting list.</p>
+
+<h4>Link Options</h4>
+
+<p>There are default links to some stores near JP that have sales fliers online. You probably want to change some or all of them. You can delete store links, add links by searching for new ones or editing links. <br/><br/> The way it is implemented now uses the format of google Places and stores the info on your phone. The idea here is to find the stores you want to include and then edit the generic link withh a particular ling to that stores sale flier. I may do something with that later. <br/><br/>To add a link you've got to search for them. If you know a particular store you want to add put in a particular search phrase like <b> Moes+Dog+Food+Emporium|Frannies+Fire+Extinguishers </b> If you cannot find what you are looking for there is no way to add a new link by hand but you can edit a link that's kind of close and turn it into what you want (+ means logical AND and | means logical OR</p>
