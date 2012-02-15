@@ -11,6 +11,7 @@ $('#yourlists').bind('pageinit', function(event) {
 	llen=thelists.length;
 	//alert(llen);
 	if (llen==0){
+		initializeLinks();
 		$.mobile.changePage( $('#dontknowyou') );
 	/*	
 	}else if (llen==1){

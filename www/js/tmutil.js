@@ -77,4 +77,58 @@ function createRandomWord(length) {
     }
     return word;
 }
+
+function initializeLinks(){
+	var adeflks = new Array();
+	var odeflk = new Object();
+	odeflk.place = 'MA Farmers Markets';
+	odeflk.address = 'List of Mass Farmers Markets';
+	odeflk.phone = '781-893-8222';
+	odeflk.url = "http://www.massfarmersmarkets.org/";
+	odeflk.lat = 'MA Farmers Markets';
+	odeflk.lon = 'MA Farmers Markets';
+	adeflks.push(odeflk);
+	localStorage.setItem('LINK01', JSON.stringify(odeflk));
+	odeflk.place = 'CapeAnnFreshCatch CSF';
+	odeflk.address = 'Gloucester, MA';
+	odeflk.phone = '123';
+	odeflk.url = "http://www.capeannfreshcatch.org/";
+	odeflk.lat = 'cafc';
+	odeflk.lon = 'cafc';
+	adeflks.push(odeflk);
+	localStorage.setItem('LINK02', JSON.stringify(odeflk));
+	odeflk.place = 'Whole Foods';
+	odeflk.address = '413 Centre Street, Jamaica Plain, MA 02130, United States';
+	odeflk.phone = '(617) 553-5401';
+	odeflk.url = "http://wholefoodsmarket.com/storespecials/JMP_specials.pdf";
+	odeflk.lat = '42.32116';
+	odeflk.lon = '-71.11067700000001';
+	adeflks.push(odeflk);
+	localStorage.setItem('LINK03', JSON.stringify(odeflk));
+	odeflk.place = 'Trader Joes';
+	odeflk.address = '1317 Beacon Street, Brookline, MA 02446, United States';
+	odeflk.phone = '(617) 278-9997';
+	odeflk.url = "http://www.traderjoes.com/products.asp";
+	odeflk.lat = '42.342062';
+	odeflk.lon = '-71.12072';
+	adeflks.push(odeflk);
+	localStorage.setItem('LINK04', JSON.stringify(odeflk));
+	odeflk.place = 'Stop and Shop';
+	odeflk.address = '301 Centre Street, Jamaica Plain, MA 02130, United States';
+	odeflk.phone = '(617) 522-4305';
+	odeflk.url = "http://stopandshop.shoplocal.com/stopandshop/default.aspx?action=entry&amp;pretailerid=-99254&amp;siteid=673&amp;storeID=2598877";
+	odeflk.lat = '42.323001';
+	odeflk.lon = '-71.10300799999999';
+	adeflks.push(odeflk);	
+	localStorage.setItem('LINK05', JSON.stringify(odeflk));
+	odeflk.place = 'Dorchester Community Food Co-op';
+	odeflk.address = ' Codman Square Great Hall (Corner of Washington St. and Talbot Ave. Dorchester, MA)';
+	odeflk.phone = '(617) 522-4305';
+	odeflk.url = "http://dotcommcoop.wordpress.com/";
+	odeflk.lat = '42.2900';
+	odeflk.lon = '-71.0718';
+	adeflks.push(odeflk);	
+	localStorage.setItem('LINK06', JSON.stringify(odeflk));					
+}
+
  

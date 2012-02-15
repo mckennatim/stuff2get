@@ -4,19 +4,21 @@
 	<title>shopping list</title> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.css" />
+		<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 		<link rel="apple-touch-icon" sizes="114x114" href="food2buy3.jpg"/>
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery.mobile.js"></script>	
 		<script src="js/jquery.cookies.js"></script>	
+		<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
 		<script src="js/tmutil.js"></script>
 		<script src="js/foodlist.js"></script>				
 	</head> 
 <body> 
-<!-- /page -->
+<!-- home_page -->
 <div id="yourlists" data-role="page">
 	<!-- header -->
 	<div data-role="header" data-position="inline">
-		<a href="#help" data-icon="info" data-role="button" id="help">help</a>
+		<a href="#help" data-icon="info" data-role="button" id="helpButton">help</a>
 		<h1>Your Lists</h1>
 		<a href="#options" data-icon="gear" data-role="button">options</a>
 	</div>
@@ -28,34 +30,12 @@
 		<div>
 			<br/>
 			<h3>Markets and Specials</h3>
-			<ul id="sales" class="current" data-role="listview" data-filter="false">
-				<li><a href="http://www.massfarmersmarkets.org/">MA Farmers Markets</a></li>
-				<li><a href="http://www.capeannfreshcatch.org/">CapeAnnFreshCatch CSF</a></li>				
-				<li><a href="http://wholefoodsmarket.com/storespecials/JMP_specials.pdf">Whole Foods</a></li>
-				<li><a href="http://www.traderjoes.com/products.asp">Trader Joes</a></li>
-				<li><a href="http://stopandshop.shoplocal.com/stopandshop/default.aspx?action=entry&pretailerid=-99254&siteid=673&storeID=2598877">Stop and Shop</a></li>
-			</ul>
+			<ul id="sales" class="current" data-role="listview" data-filter="false"></ul>
 		</div>
 	</div><!-- /content -->
 </div><!-- /page -->
 
-<div id="share" data-role="page">
-    <div data-role="header">
-    	<a href="#yourlists" data-icon="back" data-role="button">back</a>
-        <h2>Share Your List</h2>
-    </div><!-- /header -->
-	<h3>Lists Available to Share</h3>
-    <div data-role="content">	
-        
-        <ul id="list2share" class="current" data-role="listview" data-filter="false"></ul>	
-        <p>Enter the email of someone with whom you would like to share and then click on the up arrow of the list you'd like to share.</p>
-		<form>
-	         <label for="name">Email:</label>
-	         <input type="email" name="shemail" id="shemail"  />
-	    </form>     
-    </div><!-- /content -->
-</div><!-- /page -->
-
+<!-- Options page -->
 <div id="options" data-role="page">
     <div data-role="header">
     	<a href="#yourlists" data-icon="back" data-role="button">back</a>
@@ -65,15 +45,16 @@
     <div data-role="content">	      
         <ul id="uloptions" class="current" data-role="listview" data-filter="false">
         	<li><a href="#listopt">Lists</a></li>
-        	<li><a href="#linkopt">Markets & Specials</a></li>
+        	<li><a href="#linkopt">Markets &amp; Specials</a></li>
         </ul>	
     </div><!-- /content -->
 </div><!-- /page -->
 
+<!--List Options page -->
 <div id="listopt" data-role="page">
     <div data-role="header">
-    	<a href="#options" data-icon="back" data-role="button" id="delst">back</a>
-		<h1>List Options</h1>
+    	<a href="#options" data-icon="back" data-rel="back" data-role="button" >back</a>
+		<h2>List Options</h2>
 		<a href="#yourlists" data-icon="home" data-role="button">home</a>
 		<div data-role="navbar"  data-iconpos="left">
 			<ul>
@@ -91,6 +72,27 @@
     </div><!-- /content -->
 </div><!-- /page -->
 
+<!--Link Options page -->
+<div id="linkopt" data-role="page">
+    <div data-role="header">
+    	<a href="#options" data-icon="back" data-rel="back" data-role="button" >back</a>
+		<h2>Link Options</h2>
+		<a href="#yourlists" data-icon="home" data-role="button">home</a>
+		<div data-role="navbar"  data-iconpos="left">
+			<ul>
+	    	<li><a href="#" data-icon="delete" data-role="button" id="deletelk">delete</a></li>
+	    	<li><a href="#addlinks" data-icon="plus" data-role="button" id="addlk">add</a></li>
+	    	<li><a href="#" data-icon="grid" data-role="button" id="editlk">edit</a> </li>
+    	</ul>
+	    </div>	
+    </div><!-- /header -->
+    <div id="elkdiv"></div>
+    <div data-role="content">	    
+        <ul id="lkoptions" class="current" data-role="listview" data-filter="false"></ul>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<!--Help page -->
 <div id="help" data-role="page">
     <div data-role="header">
     	<a href="#yourlists" data-icon="back" data-role="button">back</a>
@@ -99,6 +101,62 @@
     <div data-role="content">	  
     		<h3>Basics of shared lists</h3>
     		<p>Check off items as you aquire them. To add items to the list type into the search box. The list below the search box will be filtered. Once it comes up un-check it to put it on your list. If it never shows up just hit go (enter) to add the item.  </p>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<!--FindLinks page -->
+<div id="addlinks" data-role="page">
+    <div data-role="header">
+    	<a href="#linkopt" data-icon="back" data-role="button">back</a>
+        <h2>Find Links</h2>
+    </div><!-- /header -->
+    <div data-role="content">		
+    		<form>	
+			<div data-role="fieldcontain">
+			<fieldset data-role="controlgroup">
+				<legend>Search near you for:</legend>
+				<input type="checkbox" name="groc" id="groc" class="custom" />
+				<label for="groc">Grocery Stores</label>
+
+				<input type="checkbox" name="farm" id="farm" class="custom" checked="checked"/>
+				<label for="farm">Farmer's Markets</label>
+
+				<input type="checkbox" name="build" id="build" class="custom" />
+				<label for="build">Building Supplies</label>
+				
+				<label for="squery"><b>keywords</b> separate by +(and) or |(or)</label>
+				<input type="text" name="squery" id="squery" class="custom" />
+
+				<label for="slider">Miles:</label>
+			 	<input type="range" name="miles" id="miles" value="5" min="0" max="15"  />		
+			 	<button type="submit" name="findlks" id="findlks" data-inline="true" data-theme="b">Search New</button>	
+			 	<button type="submit" name="redolks" id="redolks" data-inline="true" data-theme="e">Reinit. Def.</button>	
+			</fieldset>
+	    	</div>
+		    </form>	
+		    <div>	  
+	       		<ul id="foundlinks" class="current" data-role="listview" data-filter="false"></ul>
+       		</div>	
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<!--Map page -->
+<div id="mapPage" data-role="page">
+    <div data-role="header">
+    	<a href="#yourlists" data-icon="back" data-role="button">back</a>
+        <h2>Help</h2>
+    </div><!-- /header -->
+    <div data-role="content">	  
+    <div>
+	<strong>Mode of Travel: </strong>
+	<select id="mode" onchange="calcRoute();">
+	  <option value="DRIVING">Driving</option>
+	  <option value="WALKING">Walking</option>
+	  <option value="BICYCLING">Bicycling</option>
+	</select>
+	<a href="#" id="ddd" >initialize directions</a>
+	</div>	
+	<div id="map_canvas" style="width: 500px; height: 500px; top:10px;"></div>
     </div><!-- /content -->
 </div><!-- /page -->
 
