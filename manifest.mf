@@ -1,0 +1,24 @@
+CACHE MANIFEST
+# 2010-06-18:v2
+
+# Explicitly cached 'master entries'.
+CACHE:
+www/food2buy3.jpg
+index.html
+www/index.html
+www/nolists.html
+www/food2buy.html
+www/js/whobeshoppin.js
+www/js/tmutil.js
+www/js/lists.js
+www/js/jquery.mobile.js
+www/js/jquery.js
+www/js/jquery.cookies.js
+www/js/foodlist.js
+www/css/jquery.mobile.css
+www/css/images/.png
+www/css/images/icons-18-black.png
+www/css/images/icons-18-white.png
+www/css/images/icons-36-black.png
+www/css/images/icons-36-white.png
+www/css/images/ajax-loader.png
