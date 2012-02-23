@@ -28,10 +28,30 @@
 						</div>	
 	</div><!-- /page -->
         <script>
+        var farr;
         $('body').on('click', "#addinput", function (e) { 
             e.stopImmediatePropagation();
             e.preventDefault();
+            getWholeDB();
         });              
+        function getWholeDB() {
+        	var qrep = '{repo:"tpn", list:"groceries"}';
+			$.getJSON(serviceURL + 'getwholelist.php', qrep, function(data) {
+				foods = data.items;
+				console.log(foods);
+				var fobj = new Object();
+				farr = new Array();
+				$.each(foods, function(index, food) {
+					var afood = new Object();
+					afood['id']=food.id;
+					afood['stuff']=food.stuff;
+					afood['need']=food.need;
+					console.log(afood);
+					farr.push(afood);
+				});
+			});
+			console.log(farr);
+		}
         </script>    
 </body>
 </html>

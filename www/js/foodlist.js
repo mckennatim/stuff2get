@@ -98,44 +98,45 @@ $('#thelist').live('pageinit', function(event) {
 			}
 		}				
 	});
+});//end of pageinit????
+ 	
 	
-	//sets up home page
-	function getFoodList(qqrep) {
-		nqrep = qqrep + '&need=1';
-		dqrep = qqrep + '&need=0';
-		console.log(qqrep);
-		$.getJSON(serviceURL + 'getfoodlist.php', nqrep, function(data) {
-			foods = data.items;
-			console.log(foods);
-			$.each(foods, function(index, food) {
-				$('#needList').append('<li><input type="checkbox" id="' + food.id + '" /> <span>' + food.stuff + '</span></li>');
-			});
-			$('#needList').listview('refresh');
+	
+//sets up home page
+function getFoodList(qqrep) {
+	nqrep = qqrep + '&need=1';
+	dqrep = qqrep + '&need=0';
+	console.log(qqrep);
+	$.getJSON(serviceURL + 'getfoodlist.php', nqrep, function(data) {
+		foods = data.items;
+		console.log(foods);
+		$.each(foods, function(index, food) {
+			$('#needList').append('<li><input type="checkbox" id="' + food.id + '" /> <span>' + food.stuff + '</span></li>');
 		});
-		$.getJSON(serviceURL + 'getfoodlist.php', dqrep,  function(data) {
-			foods = data.items;
-			console.log(foods);
-			$.each(foods, function(index, food) {
-				$('#doneList').append('<li><input type="checkbox" checked="checked" id="' + food.id + '"/> <span>' + food.stuff + '</span></li>');
-			});
-			$('#doneList').listview('refresh');
-		});	
-	}
-	
-	function listWholeDB() {
-		console.log(qrep);
-		$.getJSON(serviceURL + 'getwholelist.php', qrep, function(data) {
-			foods = data.items;
-			console.log(foods);
-			$.each(foods, function(index, food) {
-				$('#deleteList').append('<li data-icon="delete" ><a  class="ditems" id="'+ food.id + '" data-iconpos="left" ><span>' + food.stuff + '</span></a></li>');
-			});
-			$('#deleteList').listview('refresh');
+		$('#needList').listview('refresh');
+	});
+	$.getJSON(serviceURL + 'getfoodlist.php', dqrep,  function(data) {
+		foods = data.items;
+		console.log(foods);
+		$.each(foods, function(index, food) {
+			$('#doneList').append('<li><input type="checkbox" checked="checked" id="' + food.id + '"/> <span>' + food.stuff + '</span></li>');
 		});
-	}
-	
-});
- 
+		$('#doneList').listview('refresh');
+	});	
+}
+
+function listWholeDB() {
+	console.log(qrep);
+	$.getJSON(serviceURL + 'getwholelist.php', qrep, function(data) {
+		foods = data.items;
+		console.log(foods);
+		$.each(foods, function(index, food) {
+			$('#deleteList').append('<li data-icon="delete" ><a  class="ditems" id="'+ food.id + '" data-iconpos="left" ><span>' + food.stuff + '</span></a></li>');
+		});
+		$('#deleteList').listview('refresh');
+	});
+}
+
 var cookieList = function(cookieName) {
 	var cookie = $.cookie(cookieName);
 	//Load the items or a new array if null.
@@ -168,3 +169,5 @@ var cookieList = function(cookieName) {
 	    }
 	  };
 };
+
+
