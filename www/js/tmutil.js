@@ -1,4 +1,13 @@
-var serviceURL = "http://" + location.host + "/stuff2get/services/";
+var serviceURL;
+var ho = location.host;
+if (ho.substr(0,2)=='10'){
+	console.log(location.pathname);
+		console.log(location.host);
+		serviceURL = "http://" + location.host + "/~webeshop/stuff2get/services/";
+}else {
+	console.log(location.host);
+	serviceURL = "http://" + location.host + "/stuff2get/services/";
+}
 
 var cookieList = function(cookieName) {
 	var cookie = $.cookie(cookieName);
