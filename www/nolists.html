@@ -32,14 +32,15 @@
 <div id="dontknowyou" data-role="page">
 
 	<div data-role="header" data-position="inline">
-		<a href="#deletestuff" data-icon="delete" data-role="button" id="dkyb1">remove</a>
 		<h1>Hello Stranger</h1>
-		<a href="#addstuff" data-icon="plus" data-role="button">add</a>
 	</div>
 	<div data-role="content">	
-		<h4>This is an application of shared lists</h4>
- 		<p>Not sure I have seen you before. Maybe I forgot or you want to join somebody else's lists. Either way, to go on I'll need some info.</p>
- 		<form>
+		<h4>Share a Shopping List</h4>
+		<p>You can use this app for your own lists for free. Whenever you update your list all devices that share the list get updated. So if you notice you are out of tofu you can pop open your smartphone and add it to your list. Someone from your houshold who may be at the store would automatically see tofu on their list. You can checkout Peri's and my list <a href="http://www.webeshoppin.info/stuff2get/www/food2buy.html?repo=Tpn&list=Groceries"> here.</a> </p>
+		<p>This is an HTML5 mobile app which means that it will run on iPhones, Androids, windowsPhones, ipads, tablets, laptops...anything with a browser. Once you have a list setup you can add it to you home screen and it will work just like any app. </p>
+		<h4>Setup</h4>		
+ 		<p>Not sure I have seen you before. Maybe I forgot or you want to join somebody else's lists. Either way, to go on I'll need some info. For a new repo and list you can just accept the defaults or change them to suit you. A new list will open with some dummy items.</p>
+ 		<div><form>
 	    	<div data-role="fieldcontain">
 	         <label for="name">Repo:</label>
 	         <input type="text" name="repo" id="repo" value=""  />
@@ -49,11 +50,11 @@
 	         <input type="email" name="email" id="email" value="" />
 			</div>			
 		<div data-role="controlgroup" data-type="horizontal" class="stangersubmit">
-				<input type="submit" data-theme="c" id="newsetup" value="New Setup"/>
+				<input type="submit" data-theme="a" id="newsetup" value="New Setup"/>
 				<input type="submit" data-theme="b" id="joinexist" value="Join Existing" />
 		</div>
- 		</form>
- 		<p><b>If this is  a new setup</b> - Accept the repo name and list name or make up a new ones. </p>
+	 	</form></div> 		
+	 	<br/><p><b>If this is  a new setup</b> - Accept the repo name and list name or make up a new ones. </p>
  		<p><b>If you are joining an existing list</b> - Enter the repo name and the list name you are joining.  </p>
 	</div><!-- /content -->
 

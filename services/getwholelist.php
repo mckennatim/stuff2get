@@ -4,6 +4,8 @@ include('tm/ChromePhp.php');
 $repo = $_GET['repo'];
 $list = $_GET['list'];
 
+
+ChromePhp::log('in detwholelist.php');
 //http://10.0.1.18/stuff2get/services/getwholelist.php?repo=tpn&list=groceries
 $sql = "SELECT stuff, id, need FROM `lists`WHERE repo=? AND list=? ORDER BY stuff";
 

@@ -1,4 +1,6 @@
 =Stuff2Get=
+A first attempt at a mobile application. Multiple users share lists. Computation moves from the server to the client and though the list data is in the MYSQL database, a local copy is kept on the client, asynchronously updated.
+
 You can have shared shopping lists on any mobile device. Update list on one device and the updates show up on another.
 
 http://webeshoppin.info is a jquery-mobile HTML5 app. Server is php/mysql.
