@@ -1,4 +1,4 @@
-var serviceURL = "http://" + location.host + "/stuff2get/services/";
+var serviceURL = "http://" + location.host + "/sitebuilt/stuff2get/services/";
 
 var cookieList = function(cookieName) {
 	var cookie = $.cookie(cookieName);
